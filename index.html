@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+  </head>
+  <body>
+    <div id="app">
+      <section id="signInAndSignUp" v-if="!currentUser">
+        <div class="details">
+          <div class="title">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-todo"></use>
+            </svg>
+            <h2>To-Do</h2>
+          </div>
+          <p>高效率  慢生活  ，跟上时间的步伐  做时间的主人</p>
+        </div>
+        <div>
+          <label><input type="radio" name="type" v-model="actionType" value="signUp">注册</label>
+          <label><input type="radio" name="type" v-model="actionType" value="login">登入</label>
+        </div>
+        <div class="signUp" v-if="actionType === 'signUp'">
+          <form @submit.prevent=signUp> 
+            <div class="formRow">
+              用户名:<input type="text" v-model="formData.username" placeholder="请输入用户名">  
+            </div>
+            <div class="formRow">
+              密 码 :<input type="password" v-model="formData.password" placeholder="请输入密码"> 
+            </div>
+            <div class="formActions">
+              <input type="submit" value="注册">
+            </div>
+          </form>
+        </div>
+        <div class="login" v-if="actionType === 'login'"> 
+        <form @submit.prevent="login"> 
+          <div class="formRow">
+            用户名:<input type="text" v-model="formData.username"> 
+          </div>
+          <div class="formRow">
+            密码 :<input type="password" v-model="formData.password"> 
+          </div>
+          <div class="formActions">
+            <input type="submit" value="登入">
+          </div>
+        </form>
+      </div>
+      </section>
+
+      <section id="todo" v-if="currentUser">
+        <p><button @click="logout">登出</button></p>
+        <div class="newTask">
+          <input type="text" v-model="newTodo" @keypress.enter="addTodo">
+        </div>
+        <ol class="todos">
+          <li v-for="todo in todoList">
+            <input type="checkbox" v-model="todo.done"> {{ todo.title }}
+
+            <span v-if="todo.done">已完成</span>
+            <span v-else>未完成</span>
+
+            <button @click="removeTodo(todo)">X</button>
+          </li>
+        </ol>
+      </section>
+    </div>
+  </body>
+</html>
+
+<style>
+  body{
+    background: url(http://img.bizhi.sogou.com/images/1366x768/2015/03/20/1121526.jpg);
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    text-align: center;
+  }
+  #app{
+    margin: 0 auto;
+    width:600px;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 4px #646464;
+    border-radius: 6px;
+    margin-top: 80px;
+    padding: 0 0 40px 0;
+  }
+  .icon {
+       width: 1em; height: 1em;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
+    }
+
+  .details{
+    text-align: left;
+  }
+  .details .title .icon{
+    float: left;
+    font-size: 65px;
+    color:brown;
+    margin: 50px 30px 10px 40px;
+  }
+  .details .title h2{
+    float: left;
+    font-size: 60px;
+    color: firebrick;
+    margin-right: 160px;
+    border-bottom:2px dotted #646464;
+    padding: 0 16px 4px 0;
+  }
+
+  .details p{
+    margin: 0 160px 30px 40px;
+    color: #646464;
+  }
+
+  .title:after{
+    clear: both;
+    display: block;
+    content: '';
+  }
+
+
+ 
+</style>
+
+<script src="//at.alicdn.com/t/font_0szt9eb07ljwnrk9.js"></script>
