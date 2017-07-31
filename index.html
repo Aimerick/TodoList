@@ -22,44 +22,54 @@
         <div class="signUp" v-if="actionType === 'signUp'">
           <form @submit.prevent=signUp> 
             <div class="formRow">
-              用户名:<input type="text" v-model="formData.username" placeholder="请输入用户名">  
+              用户名：<input type="text" v-model="formData.username" placeholder="请输入用户名">  
             </div>
             <div class="formRow">
-              密 码 :<input type="password" v-model="formData.password" placeholder="请输入密码"> 
+              密　码：<input type="password" v-model="formData.password" placeholder="请输入密码"> 
             </div>
             <div class="formActions">
-              <input type="submit" value="注册">
+              <input type="submit" 
+              style="width: 64px;height: 32px;background: lightpink;border:none;border-radius:3px;margin-top:16px;"
+              onmouseover="this.style.backgroundColor='antiquewhite';this.style.border='1px solid lightpink'"  
+              onmouseout="this.style.backgroundColor='lightpink';"
+              value="注册">
             </div>
           </form>
         </div>
         <div class="login" v-if="actionType === 'login'"> 
         <form @submit.prevent="login"> 
           <div class="formRow">
-            用户名:<input type="text" v-model="formData.username"> 
+            用户名：<input type="text" v-model="formData.username" placeholder="请输入用户名"> 
           </div>
           <div class="formRow">
-            密码 :<input type="password" v-model="formData.password"> 
+            密　码：<input type="password" v-model="formData.password" placeholder="请输入密码"> 
           </div>
           <div class="formActions">
-            <input type="submit" value="登入">
+            <input type="submit" 
+            style="width: 64px;height: 32px;background: lightpink;border:none;border-radius:3px;margin-top:16px;"
+              onmouseover="this.style.backgroundColor='antiquewhite';this.style.border='1px solid lightpink'"  
+              onmouseout="this.style.backgroundColor='lightpink';"
+            value="登入">
           </div>
         </form>
       </div>
       </section>
 
       <section id="todo" v-if="currentUser">
-        <p><button @click="logout">登出</button></p>
+        <p><button @click="logout"
+        style="width: 64px;height: 32px;background: lightpink;border:none;border-radius:3px;margin-top:16px;"
+              onmouseover="this.style.backgroundColor='antiquewhite';this.style.border='1px solid lightpink'"  
+              onmouseout="this.style.backgroundColor='lightpink';">
+          登出</button></p>
         <div class="newTask">
-          <input type="text" v-model="newTodo" @keypress.enter="addTodo">
+          <input type="text" v-model="newTodo" @keypress.enter="addTodo" placeholder="请输入待办事项...">
         </div>
         <ol class="todos">
           <li v-for="todo in todoList">
-            <input type="checkbox" v-model="todo.done"> {{ todo.title }}
-
+            <input type="checkbox" v-model="todo.done" > {{ todo.title }}
             <span v-if="todo.done">已完成</span>
             <span v-else>未完成</span>
-
-            <button @click="removeTodo(todo)">X</button>
+            <a @click="removeTodo(todo)">✖</a>
           </li>
         </ol>
       </section>
@@ -81,6 +91,8 @@
     border-radius: 6px;
     margin-top: 80px;
     padding: 0 0 40px 0;
+    position: absolute;
+    left:0; right:0; 
   }
   .icon {
        width: 1em; height: 1em;
@@ -118,8 +130,34 @@
     content: '';
   }
 
+  .formRow{
+    margin: 16px;
+  }
+
+  .todos{
+    text-align: left;
+    color: #646464;
+  }
+
+  .todos a{
+    position: relative;
+    left: 300px;
+    cursor: pointer;
+    font-size: 8px;
+  }
+
+  .todos span{
+    position: relative;
+    left: 100px;
+  }
+
+  .todos a:hover{
+    background: lightpink;
+    color: #fff;
+  }
 
  
+
 </style>
 
 <script src="//at.alicdn.com/t/font_0szt9eb07ljwnrk9.js"></script>
