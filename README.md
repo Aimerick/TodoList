@@ -20,7 +20,7 @@ npm run build --report
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-
+```
 项目介绍：
 1.用户可以注册，登入，登出；
 2.用户可以新建或删除一个待办事项；
@@ -35,3 +35,4 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 技术栈：
 Vue.js   webpack  npm
+```
