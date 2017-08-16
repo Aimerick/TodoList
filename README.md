@@ -33,6 +33,6 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 3.使用LeanCloud云服务来提供后端支持。
 4.通过webpack构建前端代码并打包上传。
 
-###技术栈：
+### 技术栈：
 Vue.js   webpack  npm
 
